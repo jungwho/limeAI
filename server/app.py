@@ -1,10 +1,10 @@
 from flask import Flask
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return "Hello, Flask!"
+    import whisper_api
+    app.register_blueprint(whisper_api.bp)
+  
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    return app
